@@ -1,0 +1,16 @@
+body {
+    background-color: azure;
+    font-family:'Times New Roman', Times, serif;
+
+}
+
+.header h1 p{
+    font-size: 150px;
+}
+
+.explanation{
+    text-align:center;
+    padding: 0 300px;
+    border: 2px solid darkblue;
+    background: white;
+}
