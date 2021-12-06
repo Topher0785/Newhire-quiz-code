@@ -1,21 +1,21 @@
-// Variables
 var score = 0;
 var banner = document.querySelector(".banner");
-var question = document.querySelector(".question");
-var topscore = document.querySelector(".topscore")
-var button = document.querySelector(".buttons");
-var clock = document.querySelector(".clock");
-var intrvlTime;
-var iir = document.querySelector(".iir");
-var iirpoints = 2;
+var question= document.querySelector(".rules");
+var highscore = document.querySelector(".highscore")
+var buttonsrow = document.querySelector(".buttons");
+var timer = document.querySelector(".timer");
+var timerInterval;
+var correctsound = document.querySelector(".correct");
+var wrongsound = document.querySelector(".wrong");
+var cw = document.querySelector(".cw");
+var cwtime = 2;
 var seconds = 90;
 var aA;
 var aB;
 var aC;
 var aD;
 
-
-// quiz opener
+//Opening layout.
 function quizopening() {
     highscore.style.visibility = "hidden";
 
@@ -35,7 +35,7 @@ function quizopening() {
 }
 quizopening();
 
-//Timer
+//Timer.
 function countdown() {
     timerInterval = setInterval(function() {
     seconds --;
@@ -49,113 +49,304 @@ function countdown() {
     }, 1000);
 }
 
-// time and scoring layout
-
+//Adds remaining time to the score.
 function timepoints() {
-    score+= seconds;
+    score += seconds;
 }
 
-function correctiir() {
+//Correct answer response.
+function correct() {
+    correctsound.play();
+}
+
+//Correct text display.
+function correctcw() {
     var yesInterval = setInterval(function() {
-    iirtime --;
-    iir.setAttribute("style", "color: Green") 
-    iir.textContent = "Correct!";
-        if (tiiirme <= 0) {
+    cwtime --;
+    cw.setAttribute("style", "color: rgb(112, 177, 112)")
+    cw.textContent = "Correct!";
+        if (cwtime <= 0) {
             clearInterval (yesInterval);
-            iir.textContent = "";
-            iirtime = 2;
+            cw.textContent = "";
+            cwtime = 2;
         }
     }, 350);
 }
 
-function wrongiir() {
+//Wrong answer response.
+function wrong() {
+    wrongsound.play();
+    seconds -=15;
+}
+
+//Wrong text display.
+function wrongcw() {
     var noInterval = setInterval(function() {
-    iirtime --;
-    iir.setAttribute("style", "color: red");
-    iir.textContent = "Wrong!";
-        if (iirtime <= 0) {
+    cwtime --;
+    cw.setAttribute("style", "color:rgb(185, 80, 80)");
+    cw.textContent = "Wrong!";
+        if (cwtime <= 0) {
             clearInterval (noInterval);
-            iir.textContent = "";
-            iirtime = 2;
+            cw.textContent = "";
+            cwtime = 2;
         }
     }, 350);
 }
-    aA = document.createElement("button");
-    aA .innerHTML="start quiz";
-    document.body.children[4].appendChild(a1);
-    a1.addEventListener("click", function () {
-        question1();
+
+//Question 1 
+function question1() {
+    aA.remove();
+    aB.remove();
+    countdown();
+    question.textContent = "JavaScript is often seen as";
+        
+    aA = document.createElement("BUTTON");
+    aA.innerHTML = "JS";
+    document.body.children[4].appendChild(aA);
+    aA.addEventListener("click", function () {
+        correctcw();
+        question2();
+        correct();
     });
-    function question1() {
-        aA.remove();
-        aB.remove();
-        countdown();
-        question.textContent = "JavaScript is sometimes called:";
-            
-        aA = document.createElement("BUTTON");
-        aA.innerHTML = "JSC#";
-        document.body.children[4].appendChild(aA);
-        aA.addEventListener("click", function () {
-            wrongcw();
-            question2();
-            wrong();
-        });
+
+    aB = document.createElement("BUTTON");
+    aB.innerHTML = "JVASCRPT";
+    document.body.children[4].appendChild(aB);
+    aB.addEventListener("click", function () {
+        wrongcw();
+        question2();
+        wrong();
+    });
+
+    aC = document.createElement("BUTTON");
+    aC.innerHTML = "PBANDJscrpit";
+    document.body.children[4].appendChild(aC);
+    aC.addEventListener("click", function () {
+        wrongcw();
+        question2();
+        wrong();
+    });
+
+    aD = document.createElement("BUTTON");
+    aD.innerHTML = "c#";
+    document.body.children[4].appendChild(aD);
+    aD.addEventListener("click", function () {
+        wrongcw();
+        question2();
+        correct();
+
+    });
+}
+
+//Question 2 
+function question2() {
+    aA.remove();
+    aB.remove();
+    aC.remove();
+    aD.remove();
+    question.textContent = "HTML stands for...?";
+       
+    aA = document.createElement("BUTTON");
+    aA.innerHTML = "HyperType MultiLevel";
+    document.body.children[4].appendChild(aA);
+    aA.addEventListener("click", function () {
+        wrongcw();
+        question3();
+        wrong();
+    });
+ 
+    aB = document.createElement("BUTTON");
+    aB.innerHTML = "Hypertext Markup Language";
+    document.body.children[4].appendChild(aB);
+    aB.addEventListener("click", function () {
+        correctcw();
+        question3();
+        correct();
+    });
+
+    aC = document.createElement("BUTTON");
+    aC.innerHTML = "Neither";
+    document.body.children[4].appendChild(aC);
+    aC.addEventListener("click", function () {
+        wrongcw();
+        question3();
+        wrong();
+    });
+
+    aD = document.createElement("BUTTON");
+    aD.innerHTML = "Both";
+    document.body.children[4].appendChild(aD);
+    aD.addEventListener("click", function () {
+        wrongcw();
+        question3();
+        wrong();
+    });
+}
+
+//Question 3 
+function question3() {
+    aA.remove();
+    aB.remove();
+    aC.remove();
+    aD.remove();
+    question.textContent = "JavaScript does what primarily?";
+       
+    aA = document.createElement("BUTTON");
+    aA.innerHTML = "Holds the website info";
+    document.body.children[4].appendChild(aA);
+    aA.addEventListener("click", function () {
+        wrongcw();
+        question4();
+        wrong();
+    });
+ 
+    aB = document.createElement("BUTTON");
+    aB.innerHTML = "adds style";
+    document.body.children[4].appendChild(aB);
+    aB.addEventListener("click", function () {
+        wrongcw();
+        question4();
+        wrong();
+    });
+
+    aC = document.createElement("BUTTON");
+    aC.innerHTML = "removes functionality";
+    document.body.children[4].appendChild(aC);
+    aC.addEventListener("click", function () {
+        wrongcw();
+        question4();
+        wrong();
+    });
+
+    aD = document.createElement("BUTTON");
+    aD.innerHTML = "adds interactive features";
+    document.body.children[4].appendChild(aD);
+    aD.addEventListener("click", function () {
+        correctcw();
+        question4();
+        correct();
+    });
+}
+
+//Question 4 
+function question4() {
+    aA.remove();
+    aB.remove();
+    aC.remove();
+    aD.remove();
+    question.textContent = "JavaScript is invented by ";
+       
+    aA = document.createElement("BUTTON");
+    aA.innerHTML = "Brendan Eich";
+    document.body.children[4].appendChild(aA);
+    aA.addEventListener("click", function () {
+        correctcw();
+        question5();
+        correct();
+    });
+ 
+    aB = document.createElement("BUTTON");
+    aB.innerHTML = "Packard Bell";
+    document.body.children[4].appendChild(aB);
+    aB.addEventListener("click", function () {
+        wrongcw();
+        question5();
+        wrong();
+    });
+
+    aC = document.createElement("BUTTON");
+    aC.innerHTML = "Mario Andretti";
+    document.body.children[4].appendChild(aC);
+    aC.addEventListener("click", function () {
+        wrongcw();
+        question5();
+        wrong();
+    });
+
+    aD = document.createElement("BUTTON");
+    aD.innerHTML = "None of these";
+    document.body.children[4].appendChild(aD);
+    aD.addEventListener("click", function () {
+        wrongcw();
+        question5();
+        wrong();
+    });
+}
+
+//Question 5 
+function question5() {
+    aA.remove();
+    aB.remove();
+    aC.remove();
+    aD.remove();
+    question.textContent = "What will hold an array?";
+       
+    aA = document.createElement("BUTTON");
+    aA.innerHTML = "This probably is the easiest one to not choose";
+    document.body.children[4].appendChild(aA);
+    aA.addEventListener("click", function () {
+        wrongcw();
+        question6();
+        wrong();
+    });
+ 
+    aB = document.createElement("BUTTON");
+    aB.innerHTML = "an arrayonator";
+    document.body.children[4].appendChild(aB);
+    aB.addEventListener("click", function () {
+        wrongcw();
+        question6();
+        wrong();
+    });
+
+    aC = document.createElement("BUTTON");
+    aC.innerHTML = "the Div";
+    document.body.children[4].appendChild(aC);
+    aC.addEventListener("click", function () {
+        wrongcw();
+        question6();
+        wrong();
+    });
+
+    aD = document.createElement("BUTTON");
+    aD.innerHTML = "String";
+    document.body.children[4].appendChild(aD);
+    aD.addEventListener("click", function () {
+        correctcw();
+        Postquiz();
+        correct();
+    });
+}
+
+
+    aD = document.createElement("BUTTON");
+    aD.innerHTML = "javascript";
+    document.body.children[4].appendChild(aD);
+    aD.addEventListener("click", function () {
+        wrong();
+        wrongcw();
+        postquiz();
+    });
+
+
+//Post-quiz layout.
+function postquiz() {
+    timepoints();
+    seconds = 0; 
+    aA.remove();
+    aB.remove();
+    aC.remove();
+    aD.remove();
+    highscore.style.visibility = "visible";
+    question.textContent = "Quiz Complete! Your score is " + score + ". Please enter your initials below."
     
-        aB = document.createElement("BUTTON");
-        aB.innerHTML = "JVSCPT";
-        document.body.children[4].appendChild(ab);
-        aB.addEventListener("click", function () {
-            wrongcw();
-            question2();
-            wrong();
-        });
-    
-        aC = document.createElement("BUTTON");
-        aC.innerHTML = "JS";
-        document.body.children[4].appendChild(aC);
-        aC.addEventListener("click", function () {
-            correctiir();
-            question2();
-            correctiir();
-        });
-    
-        aD = document.createElement("BUTTON");
-        ad.innerHTML = "APB&J";
-        document.body.children[4].appendChild(aD);
-        ad.addEventListener("click", function () {
-            correctcw();
-            question2();
-            correct();
-    
-        });
-      
-    }
-    
+    aA = document.createElement("BUTTON");
+    aA.innerHTML = "Submit";
+    document.body.children[4].appendChild(aA);
+    aA.addEventListener("click", function () {
+        localStorage.setItem("user", highscore.value);
+        localStorage.setItem("score", score);
+        scorepage();
+    });
+}
 
-
-
-
-
-
-// Answer section is it right or wrong?
-
-
-
-// "the price is WRONG BOB" what will happen now?
-
-// wrong display/text
-
-
-
-
-//questions
-
-
-
-
-// End results
-
-
-
-
-// Top Score
