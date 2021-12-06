@@ -9,18 +9,15 @@ h1 {
 }
 
 .number {
-    background-color: white;
+    background-color: rgb(8, 212, 248);
     border-bottom: 1px solid black;
 }
 
-.rules {
-    text-align: center;
-    border: 1px solid black;
-    background-color: rgba(197, 194, 38, 0.733);
-}
+
 
 .buttons {
     text-align: center;
+    justify-content: center;
 }
 
 button {
